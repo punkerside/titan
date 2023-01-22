@@ -1,0 +1,26 @@
+name: Pipeline
+description: Plantilla para despliegues de imagenes Docker
+
+inputs:
+  AWS_ACCESS_KEY_ID:
+    required: true
+    description: AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY:
+    required: true
+    description: AWS_SECRET_ACCESS_KEY
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Build
+      shell: bash
+      run: make build_image
+
+    - name: Registry
+      shell: bash
+      run: make deploy_registry
+
+    - name: Release
+      shell: bash
+      run: make release_image
