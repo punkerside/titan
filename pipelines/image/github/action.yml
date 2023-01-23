@@ -17,10 +17,6 @@ runs:
       shell: bash
       run: make build_image
 
-    - name: Registry
-      shell: bash
-      run: make deploy_registry
-
     - name: Release
       shell: bash
       run: make release_image

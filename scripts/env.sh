@@ -5,9 +5,15 @@ export AWS_DEFAULT_REGION="us-east-1"
 scripts_loading () {
   source "${GIT_HOME}"/scripts/build.sh
   source "${GIT_HOME}"/scripts/env.sh
+  source "${GIT_HOME}"/scripts/release.sh
 }
 
 function_env_global () {
+  if [ -z "${GITHUB_RUN_ID}" ]
+  then
+    echo "variable GITHUB_RUN_ID no detectada"
+  fi
+
   if [ "${GITHUB_REPOSITORY}" != "" ]
   then
     PROJECT=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f1)
@@ -23,11 +29,6 @@ function_env_global () {
 
   ENV="prod"
   export ENV="${ENV}"
-
-  if [ -z "${GITHUB_RUN_ID}" ]
-  then
-    GITHUB_RUN_ID=$(date +"%y%m%d%H")
-  fi
 }
 
 function_env_docker () {
