@@ -13,6 +13,8 @@ function_release_image () {
   scripts_loading
   function_env_global
 
+  echo "DOCKERHUB_USER: ${DOCKERHUB_USER}"
+
   if [ -z "${DOCKERHUB_USER}" ]
   then
     echo "variable DOCKERHUB_USER no detectada"
