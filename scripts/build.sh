@@ -7,10 +7,10 @@ scripts_loading () {
   source "${GIT_HOME}"/scripts/env.sh
 }
 
-script_build_image () {
+function_build_image () {
   # cargando scripts
   scripts_loading
-  script_env_global
+  function_env_global
 
   # ejecutando proceso
   docker build -t "${PROJECT}-${ENV}-${SERVICE}":release -f Dockerfile .

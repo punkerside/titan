@@ -7,7 +7,7 @@ scripts_loading () {
   source "${GIT_HOME}"/scripts/env.sh
 }
 
-script_env_global () {
+function_env_global () {
   if [ "${GITHUB_REPOSITORY}" != "" ]
   then
     PROJECT=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f1)
@@ -30,7 +30,7 @@ script_env_global () {
   fi
 }
 
-script_env_docker () {
+function_env_docker () {
   DOCKER_UID=$(id -u)
   DOCKER_GID=$(id -g)
   DOCKER_USER=$(whoami)
