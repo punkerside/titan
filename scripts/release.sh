@@ -16,11 +16,13 @@ function_release_image () {
   if [ -z "${DOCKERHUB_USER}" ]
   then
     echo "variable DOCKERHUB_USER no detectada"
+    exit 1
   fi
 
   if [ -z "${DOCKERHUB_PASS}" ]
   then
     echo "variable DOCKERHUB_PASS no detectada"
+    exit 1
   fi
 
   # ejecutando proceso
