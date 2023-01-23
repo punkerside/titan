@@ -2,12 +2,12 @@ name: Pipeline
 description: Plantilla para despliegues de imagenes Docker
 
 inputs:
-  AWS_ACCESS_KEY_ID:
+  DOCKERHUB_USER:
     required: true
-    description: AWS_ACCESS_KEY_ID
-  AWS_SECRET_ACCESS_KEY:
+    description: DOCKERHUB_USER
+  DOCKERHUB_PASS:
     required: true
-    description: AWS_SECRET_ACCESS_KEY
+    description: DOCKERHUB_PASS
 
 runs:
   using: "composite"
