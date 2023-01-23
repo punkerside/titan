@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 
 GIT_OWNER  = punkerside
-GIT_REPO   = titan
+GIT_REPO   = titan-bash
 GIT_BRANCH = main
 REP_HOME   = $(shell echo "$(shell pwd | rev | cut -d "/" -f1 | rev)")
 
