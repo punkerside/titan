@@ -2,7 +2,7 @@
 
 export AWS_DEFAULT_REGION="us-east-1"
 
-scripts_loading () {
+function_loading () {
   source "${GIT_HOME}"/scripts/build.sh
   source "${GIT_HOME}"/scripts/env.sh
   source "${GIT_HOME}"/scripts/release.sh
@@ -10,7 +10,7 @@ scripts_loading () {
 
 function_release_image () {
   # cargando scripts
-  scripts_loading
+  function_loading
   function_env_global
 
   echo "DOCKERHUB_USER: ${DOCKERHUB_USER}"
