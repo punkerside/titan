@@ -24,7 +24,7 @@ function_build_code () {
   function_env_docker
 
   # depurando temporales
-  rm -rf app/.npm/ app/node_modules/ app/package-lock.json passwd app/app.zip
+  rm -rf app/.npm/ app/node_modules/ app/package-lock.json app/app.zip
 
   # ejecutando proceso
   docker run --rm -u "${DOCKER_UID}":"${DOCKER_GID}" -v "${PWD}"/passwd:/etc/passwd:ro -v "${PWD}"/app:/app punkerside/titan-npm:latest
