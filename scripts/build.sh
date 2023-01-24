@@ -21,6 +21,7 @@ function_build_code () {
   # cargando scripts
   function_loading
   function_env_global
+  function_env_docker
 
   # ejecutando proceso
   docker run --rm -u "${DOCKER_UID}":"${DOCKER_GID}" -v "${PWD}"/passwd:/etc/passwd:ro -v "${PWD}"/app:/app punkerside/titan-npm:latest
