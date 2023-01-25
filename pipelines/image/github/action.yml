@@ -20,3 +20,7 @@ runs:
     - name: Release
       shell: bash
       run: make release_image
+
+    - name: Tagging
+      shell: bash
+      run: make gitflow_release
