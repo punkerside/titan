@@ -1,0 +1,23 @@
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+  DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
+
+jobs:
+  Pipeline:
+    name: Default
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Reusing Workflows
+      run: make gitflow_release
