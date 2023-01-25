@@ -8,6 +8,9 @@ inputs:
   DOCKERHUB_PASS:
     required: true
     description: DOCKERHUB_PASS
+  GIT_TOKEN:
+    required: true
+    description: GIT_TOKEN
 
 runs:
   using: "composite"
