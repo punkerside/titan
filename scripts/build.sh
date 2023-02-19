@@ -36,4 +36,14 @@ function_build_code () {
   cd app/ && zip -r app.zip .
 }
 
+function_build_ansible () {
+  # cargando scripts
+  function_loading
+  function_env_global
+  function_env_docker
+
+  # ejecutando proceso
+  docker run --rm -u "${DOCKER_UID}":"${DOCKER_GID}" -v "${PWD}"/passwd:/etc/passwd:ro -v "${PWD}":/app punkerside/titan-packer:latest
+}
+
 "$@"
