@@ -29,6 +29,10 @@ function_env_global () {
 
   ENV="prod"
   export ENV="${ENV}"
+
+  # variables personalizables
+  TF_ORGANIZATION="punkerside"
+  export TF_ORGANIZATION=${TF_ORGANIZATION}
 }
 
 function_env_docker () {

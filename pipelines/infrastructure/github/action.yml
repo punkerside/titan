@@ -1,0 +1,29 @@
+name: Pipeline
+description: Plantilla para despliegues de imagenes Docker
+
+inputs:
+  DOCKERHUB_USER:
+    required: true
+    description: DOCKERHUB_USER
+  DOCKERHUB_PASS:
+    required: true
+    description: DOCKERHUB_PASS
+  GIT_TOKEN:
+    required: true
+    description: GIT_TOKEN
+
+runs:
+  using: "composite"
+  steps:
+
+    # - name: Build
+    #   shell: bash
+    #   run: make build_image
+
+    # - name: Release
+    #   shell: bash
+    #   run: make release_image
+
+    # - name: Tagging
+    #   shell: bash
+    #   run: make gitflow_release
