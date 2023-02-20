@@ -36,7 +36,7 @@ function_build_code () {
   cd app/ && zip -r app.zip .
 }
 
-function_build_ansible () {
+function_build_packer () {
   # cargando scripts
   function_loading
   function_env_global
