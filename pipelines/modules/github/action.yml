@@ -1,0 +1,25 @@
+name: Pipeline
+description: Plantilla para despliegues de modulos de Terraform
+
+inputs:
+  DOCKERHUB_USER:
+    required: true
+    description: DOCKERHUB_USER
+  DOCKERHUB_PASS:
+    required: true
+    description: DOCKERHUB_PASS
+  GIT_TOKEN:
+    required: true
+    description: GIT_TOKEN
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Awspec
+      shell: bash
+      run: make test_awspec
+
+    - name: Tagging
+      shell: bash
+      run: make gitflow_release
