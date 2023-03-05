@@ -1,2 +1,5 @@
 [![Build](https://github.com/punkerside/titan-bash/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/punkerside/titan-bash/actions/workflows/main.yml)
 [![GitHub Tag](https://img.shields.io/github/tag-date/punkerside/titan-bash.svg?style=plastic)](https://github.com/punkerside/titan-bash/tags/)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/punkerside/titan-bash)
+[![Open Source Helpers](https://www.codetriage.com/punkerside/titan-bash/badges/users.svg)](https://www.codetriage.com/punkerside/titan-bash)
+[![GitHub Issues](https://img.shields.io/github/issues/punkerside/titan-bash.svg)](https://github.com/punkerside/titan-bash/issues)
