@@ -16,7 +16,18 @@ function_test_awspec () {
   function_loading
   function_env_global
   function_env_docker
-  function_login_aws
+
+  if [ -z "${AWS_ACCESS_KEY_ID}" ]
+  then
+    echo "variable AWS_ACCESS_KEY_ID no detectada"
+    exit 1
+  fi
+
+  if [ -z "${AWS_SECRET_ACCESS_KEY}" ]
+  then
+    echo "variable AWS_SECRET_ACCESS_KEY no detectada"
+    exit 1
+  fi
 
   # ejecutando pruebas
   docker run --rm -u "${DOCKER_UID}":"${DOCKER_GID}" -v "${PWD}"/passwd:/etc/passwd:ro -v "${PWD}":/app \
