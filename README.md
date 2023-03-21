@@ -43,9 +43,9 @@ Three rings for the kings Cloud Provider under the sky. Seven for the DevOps Lor
 
 | Prefix | Type | Service |
 |--------|------|---------|
-| `script` | `build` | `image` |
-| `script` | `test` | `awspec` |
-| `script` | `terraform` | `init` |
+| `function` | `build` | `image` |
+| | `test` | `awspec` |
+| | `terraform` | `init` |
 
 ### Make
 

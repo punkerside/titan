@@ -14,7 +14,7 @@ jobs:
   Pipeline:
     name: Default
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 15
     steps:
 
     - name: Checkout

@@ -1,11 +1,13 @@
 #!/bin/bash
 
-export AWS_DEFAULT_REGION="us-east-1"
-
 function_loading () {
   source "${GIT_HOME}"/scripts/build.sh
   source "${GIT_HOME}"/scripts/env.sh
+  source "${GIT_HOME}"/scripts/gitflow.sh
+  source "${GIT_HOME}"/scripts/login.sh
   source "${GIT_HOME}"/scripts/release.sh
+  source "${GIT_HOME}"/scripts/terraform.sh
+  source "${GIT_HOME}"/scripts/test.sh
 }
 
 function_build_image () {
@@ -14,8 +16,27 @@ function_build_image () {
   function_env_global
 
   # ejecutando proceso
-  docker build -t "${PROJECT}-${SERVICE}":release -f Dockerfile .
+  docker build -t "${PROJECT}-${TYPE}-${SERVICE}":release -f Dockerfile .
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function_build_code () {
   # cargando scripts

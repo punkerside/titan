@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export AWS_DEFAULT_REGION="us-east-1"
-
 function_loading () {
   source "${GIT_HOME}"/scripts/build.sh
   source "${GIT_HOME}"/scripts/env.sh
@@ -9,6 +7,7 @@ function_loading () {
   source "${GIT_HOME}"/scripts/login.sh
   source "${GIT_HOME}"/scripts/release.sh
   source "${GIT_HOME}"/scripts/terraform.sh
+  source "${GIT_HOME}"/scripts/test.sh
 }
 
 function_test_awspec () {

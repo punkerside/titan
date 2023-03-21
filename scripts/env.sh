@@ -1,11 +1,13 @@
 #!/bin/bash
 
-export AWS_DEFAULT_REGION="us-east-1"
-
 function_loading () {
   source "${GIT_HOME}"/scripts/build.sh
   source "${GIT_HOME}"/scripts/env.sh
+  source "${GIT_HOME}"/scripts/gitflow.sh
+  source "${GIT_HOME}"/scripts/login.sh
   source "${GIT_HOME}"/scripts/release.sh
+  source "${GIT_HOME}"/scripts/terraform.sh
+  source "${GIT_HOME}"/scripts/test.sh
 }
 
 function_env_global () {
@@ -17,20 +19,26 @@ function_env_global () {
   if [ "${GITHUB_REPOSITORY}" != "" ]
   then
     PROJECT=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f1)
-    SERVICE=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f2-50)
+    TYPE=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f2)
+    SERVICE=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f3-50)
     export PROJECT="${PROJECT}"
+    export TYPE="${TYPE}"
     export SERVICE="${SERVICE}"
   else
     PROJECT=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f1)
-    SERVICE=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f2-50)
+    TYPE=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f2)
+    SERVICE=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f3-50)
     export PROJECT="${PROJECT}"
+    export TYPE="${TYPE}"
     export SERVICE="${SERVICE}"
   fi
 
   ENV="prod"
   export ENV="${ENV}"
 
-  # variables personalizables
+  AWS_DEFAULT_REGION="us-east-1"
+  export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+
   TF_ORGANIZATION="punkerside"
   export TF_ORGANIZATION=${TF_ORGANIZATION}
 }

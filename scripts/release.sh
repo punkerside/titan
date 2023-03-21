@@ -1,11 +1,13 @@
 #!/bin/bash
 
-export AWS_DEFAULT_REGION="us-east-1"
-
 function_loading () {
   source "${GIT_HOME}"/scripts/build.sh
   source "${GIT_HOME}"/scripts/env.sh
+  source "${GIT_HOME}"/scripts/gitflow.sh
+  source "${GIT_HOME}"/scripts/login.sh
   source "${GIT_HOME}"/scripts/release.sh
+  source "${GIT_HOME}"/scripts/terraform.sh
+  source "${GIT_HOME}"/scripts/test.sh
 }
 
 function_release_image () {
@@ -28,15 +30,15 @@ function_release_image () {
   fi
 
   # ejecutando proceso
-  docker tag "${PROJECT}-${SERVICE}":release ${DOCKERHUB_USER}/"${PROJECT}-${SERVICE}":latest
-  docker tag "${PROJECT}-${SERVICE}":release ${DOCKERHUB_USER}/"${PROJECT}-${SERVICE}":${GITHUB_RUN_ID}
+  docker tag "${PROJECT}-${TYPE}-${SERVICE}":release ${DOCKERHUB_USER}/"${PROJECT}-${TYPE}-${SERVICE}":latest
+  docker tag "${PROJECT}-${TYPE}-${SERVICE}":release ${DOCKERHUB_USER}/"${PROJECT}-${TYPE}-${SERVICE}":${GITHUB_RUN_ID}
 
   # login
   echo ${DOCKERHUB_PASS} | docker login --username ${DOCKERHUB_USER} --password-stdin
 
   # publicando imagen
-  docker push ${DOCKERHUB_USER}/"${PROJECT}-${SERVICE}":latest
-  docker push ${DOCKERHUB_USER}/"${PROJECT}-${SERVICE}":${GITHUB_RUN_ID}
+  docker push ${DOCKERHUB_USER}/"${PROJECT}-${TYPE}-${SERVICE}":latest
+  docker push ${DOCKERHUB_USER}/"${PROJECT}-${TYPE}-${SERVICE}":${GITHUB_RUN_ID}
 }
 
 "$@"
