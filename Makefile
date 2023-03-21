@@ -5,7 +5,7 @@ GIT_BRANCH = main
 REP_HOME   = $(shell echo "$(shell pwd | rev | cut -d "/" -f1 | rev)")
 
 # configurando directorio
-ifeq ($(REP_HOME),${GIT_PATH})
+ifeq ($(REP_HOME),${GIT_REPO})
 GIT_HOME = $(shell echo "$(PWD)")
 else
 GIT_HOME = $(shell echo "$(PWD)/.${GIT_PATH}")
