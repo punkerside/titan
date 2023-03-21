@@ -18,7 +18,7 @@ function_gitflow_release () {
   function_env_docker
 
   # ejecutando proceso
-  docker run -e GITHUB_TOKEN=${GIT_TOKEN} -e GITHUB_REPO=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2) punkerside/titan-gh:latest
+  docker run -e GITHUB_TOKEN=${GIT_TOKEN} -e GITHUB_REPO=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2) punkerside/titan-image-gh:latest
 }
 
 "$@"
