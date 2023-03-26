@@ -33,7 +33,7 @@ function_test_awspec () {
     -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
     -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
     -e AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" \
-  punkerside/titan-awspec:latest
+  punkerside/titan-image-awspec:latest
 }
 
 function_test_precommit () {
