@@ -15,8 +15,6 @@ function_release_image () {
   function_loading
   function_env_global
 
-  echo "DOCKERHUB_USER: ${DOCKERHUB_USER}"
-
   if [ -z "${DOCKERHUB_USER}" ]
   then
     echo "variable DOCKERHUB_USER no detectada"
@@ -30,15 +28,15 @@ function_release_image () {
   fi
 
   # ejecutando proceso
-  docker tag "${PROJECT}-${TYPE}-${SERVICE}":release ${DOCKERHUB_USER}/"${PROJECT}-${TYPE}-${SERVICE}":latest
-  docker tag "${PROJECT}-${TYPE}-${SERVICE}":release ${DOCKERHUB_USER}/"${PROJECT}-${TYPE}-${SERVICE}":${GITHUB_RUN_ID}
+  docker tag "${PROJECT}-${SERVICE}":release ${DOCKERHUB_USER}/"${PROJECT}-${SERVICE}":latest
+  docker tag "${PROJECT}-${SERVICE}":release ${DOCKERHUB_USER}/"${PROJECT}-${SERVICE}":${GITHUB_RUN_ID}
 
   # login
   echo ${DOCKERHUB_PASS} | docker login --username ${DOCKERHUB_USER} --password-stdin
 
   # publicando imagen
-  docker push ${DOCKERHUB_USER}/"${PROJECT}-${TYPE}-${SERVICE}":latest
-  docker push ${DOCKERHUB_USER}/"${PROJECT}-${TYPE}-${SERVICE}":${GITHUB_RUN_ID}
+  docker push ${DOCKERHUB_USER}/"${PROJECT}-${SERVICE}":latest
+  docker push ${DOCKERHUB_USER}/"${PROJECT}-${SERVICE}":${GITHUB_RUN_ID}
 }
 
 "$@"

@@ -6,6 +6,7 @@ function_loading () {
   source "${GIT_HOME}"/scripts/gitflow.sh
   source "${GIT_HOME}"/scripts/login.sh
   source "${GIT_HOME}"/scripts/release.sh
+  source "${GIT_HOME}"/scripts/security.sh
   source "${GIT_HOME}"/scripts/terraform.sh
   source "${GIT_HOME}"/scripts/test.sh
 }
@@ -19,17 +20,13 @@ function_env_global () {
   if [ "${GITHUB_REPOSITORY}" != "" ]
   then
     PROJECT=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f1)
-    TYPE=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f2)
-    SERVICE=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f3-50)
+    SERVICE=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f2-50)
     export PROJECT="${PROJECT}"
-    export TYPE="${TYPE}"
     export SERVICE="${SERVICE}"
   else
     PROJECT=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f1)
-    TYPE=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f2)
-    SERVICE=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f3-50)
+    SERVICE=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f2-50)
     export PROJECT="${PROJECT}"
-    export TYPE="${TYPE}"
     export SERVICE="${SERVICE}"
   fi
 
