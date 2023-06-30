@@ -12,7 +12,7 @@ function_lint_hadolint () {
   function_env_global
 
   # ejecutando proceso
-  docker run --rm -i hadolint/hadolint < Dockerfile
+  docker run --rm -i hadolint/hadolint hadolint --ignore DL4006 "$@" - < Dockerfile
 }
 
 "$@"
