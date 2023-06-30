@@ -14,11 +14,12 @@ function_loading () {
 function_gitflow_release () {
   # cargando scripts
   function_loading
+
+  # cargando variables globales
   function_env_global
-  function_env_docker
 
   # ejecutando proceso
-  docker run -e GITHUB_TOKEN=${GIT_TOKEN} -e GITHUB_REPO=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2) punkerside/titan-image-gh:latest
+  docker run -e GITHUB_TOKEN=${GIT_TOKEN} -e GITHUB_REPO=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2) punkerside/gh:latest
 }
 
 "$@"

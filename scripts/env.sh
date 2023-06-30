@@ -38,6 +38,9 @@ function_env_global () {
 
   TF_ORGANIZATION="punkerside"
   export TF_ORGANIZATION=${TF_ORGANIZATION}
+
+  DOCKERHUB_USER="punkerside"
+  export DOCKERHUB_USER=${DOCKERHUB_USER}
 }
 
 function_env_docker () {
