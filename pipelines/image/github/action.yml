@@ -16,6 +16,10 @@ runs:
   using: "composite"
   steps:
 
+    - name: Lint
+      shell: bash
+      run: make lint_hadolint
+
     - name: Build
       shell: bash
       run: make build_image
