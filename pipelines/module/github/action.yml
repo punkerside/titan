@@ -16,6 +16,10 @@ runs:
   using: "composite"
   steps:
 
+    - name: Snyk
+      shell: bash
+      run: make security_iac
+
     - name: Awspec
       shell: bash
       run: make test_awspec
