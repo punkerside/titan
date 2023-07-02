@@ -41,6 +41,9 @@ function_env_global () {
 
   DOCKERHUB_USER="punkerside"
   export DOCKERHUB_USER=${DOCKERHUB_USER}
+
+  SNYK_ORG="punkerside"
+  export SNYK_ORG=${SNYK_ORG}
 }
 
 function_env_docker () {

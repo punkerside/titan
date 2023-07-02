@@ -1,22 +1,43 @@
 #!/bin/bash
 
 function_loading () {
-  source "${GIT_HOME}"/scripts/build.sh
   source "${GIT_HOME}"/scripts/env.sh
-  source "${GIT_HOME}"/scripts/gitflow.sh
-  source "${GIT_HOME}"/scripts/login.sh
-  source "${GIT_HOME}"/scripts/release.sh
-  source "${GIT_HOME}"/scripts/terraform.sh
-  source "${GIT_HOME}"/scripts/test.sh
 }
 
 function_security_iac () {
   # cargando scripts
   function_loading
+
+  # cargando variables globales
   function_env_global
 
-  # ejecutando proceso
+  # cargando variables docker
+  function_env_docker
 
+  # confirmar variables
+  if [ -z "${SNYK_TOKEN}" ]
+  then
+    echo "variable AWS_ACCESS_KEY_ID no detectada"
+    exit 1
+  fi
+
+  if [ "${GITHUB_REPOSITORY}" != "" ]
+  then
+    export SNYK_APP="${GITHUB_REPOSITORY}"
+  else
+    export SNYK_APP=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev)
+  fi
+
+  echo "SNYK_APP: ${SNYK_APP}"
+  echo "SNYK_ORG: ${SNYK_ORG}"
+  echo "SNYK_TOKEN: ${SNYK_TOKEN}"
+
+  # ejecutando proceso
+  docker run --rm -u "${DOCKER_UID}":"${DOCKER_GID}" -v "${PWD}"/passwd:/etc/passwd:ro -v "${PWD}":/app \
+    -e SNYK_ORG="${SNYK_ORG}" \
+    -e SNYK_APP="${SNYK_APP}" \
+    -e SNYK_TOKEN="${SNYK_TOKEN}" \
+  punkerside/snyk:latest snyk_iac
 }
 
 "$@"
