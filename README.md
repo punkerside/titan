@@ -1,11 +1,8 @@
 [![Build](https://github.com/punkerside/titan-core/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/punkerside/titan-core/actions/workflows/main.yml)
+[![Open Source Helpers](https://www.codetriage.com/punkerside/titan-core/badges/users.svg)](https://www.codetriage.com/punkerside/titan-core)
 [![GitHub Issues](https://img.shields.io/github/issues/punkerside/titan-core.svg)](https://github.com/punkerside/titan-core/issues)
 [![GitHub Tag](https://img.shields.io/github/tag-date/punkerside/titan-core.svg?style=plastic)](https://github.com/punkerside/titan-core/tags/)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/punkerside/titan-core)
-
-<!-- [![Open Source Helpers](https://www.codetriage.com/punkerside/titan-core/badges/users.svg)](https://www.codetriage.com/punkerside/titan-core) -->
-
-
 
 # Titan - One tool to rule them all
 
@@ -14,8 +11,6 @@ Three rings for the kings Cloud Provider under the sky. Seven for the DevOps Lor
 <p align="center">
   <img src="docs/img/architecture.png">
 </p>
-
-
 
 <!-- ### Cloud Provider 
 ## Support

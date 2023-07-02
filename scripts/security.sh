@@ -14,8 +14,6 @@ function_security_iac () {
   # cargando variables docker
   function_env_docker
 
-  echo "SNYK_TOKEN: ${SNYK_TOKEN}"
-
   # confirmar variables
   if [ -z "${SNYK_TOKEN}" ]
   then
