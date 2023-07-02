@@ -11,6 +11,9 @@ inputs:
   GIT_TOKEN:
     required: true
     description: GIT_TOKEN
+  SNYK_TOKEN:
+    required: true
+    description: SNYK_TOKEN
 
 runs:
   using: "composite"
