@@ -17,7 +17,7 @@ function_security_iac () {
   # confirmar variables
   if [ -z "${SNYK_TOKEN}" ]
   then
-    echo "variable AWS_ACCESS_KEY_ID no detectada"
+    echo "variable SNYK_TOKEN no detectada"
     exit 1
   fi
 
@@ -27,10 +27,6 @@ function_security_iac () {
   else
     export SNYK_APP=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev)
   fi
-
-  echo "SNYK_APP: ${SNYK_APP}"
-  echo "SNYK_ORG: ${SNYK_ORG}"
-  echo "SNYK_TOKEN: ${SNYK_TOKEN}"
 
   # ejecutando proceso
   docker run --rm -u "${DOCKER_UID}":"${DOCKER_GID}" -v "${PWD}"/passwd:/etc/passwd:ro -v "${PWD}":/app \
