@@ -1,17 +1,6 @@
 #!/bin/bash
 
-function_loading () {
-  source "${GIT_HOME}"/scripts/build.sh
-  source "${GIT_HOME}"/scripts/env.sh
-  source "${GIT_HOME}"/scripts/gitflow.sh
-  source "${GIT_HOME}"/scripts/login.sh
-  source "${GIT_HOME}"/scripts/release.sh
-  source "${GIT_HOME}"/scripts/security.sh
-  source "${GIT_HOME}"/scripts/terraform.sh
-  source "${GIT_HOME}"/scripts/test.sh
-}
-
-function_env_global () {
+script_env_global () {
   if [ -z "${GITHUB_RUN_ID}" ]
   then
     echo "variable GITHUB_RUN_ID no detectada"
@@ -46,14 +35,14 @@ function_env_global () {
   export SNYK_ORG=${SNYK_ORG}
 }
 
-function_env_docker () {
-  DOCKER_UID=$(id -u)
-  DOCKER_GID=$(id -g)
-  DOCKER_USER=$(whoami)
-  export DOCKER_UID="${DOCKER_UID}"
-  export DOCKER_GID="${DOCKER_GID}"
-  export DOCKER_USER="${DOCKER_USER}"
-  echo ''"${DOCKER_USER}"':x:'"${DOCKER_UID}"':'"${DOCKER_GID}"'::/app:/sbin/nologin' > passwd
-}
+# function_env_docker () {
+#   DOCKER_UID=$(id -u)
+#   DOCKER_GID=$(id -g)
+#   DOCKER_USER=$(whoami)
+#   export DOCKER_UID="${DOCKER_UID}"
+#   export DOCKER_GID="${DOCKER_GID}"
+#   export DOCKER_USER="${DOCKER_USER}"
+#   echo ''"${DOCKER_USER}"':x:'"${DOCKER_UID}"':'"${DOCKER_GID}"'::/app:/sbin/nologin' > passwd
+# }
 
 "$@"
