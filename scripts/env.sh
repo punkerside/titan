@@ -40,7 +40,10 @@ script_env_global () {
   # export SNYK_ORG=${SNYK_ORG}
 }
 
-
+script_env_release () {
+  releaseVersion=$(cat CHANGELOG.md | grep '##' | grep '-' | grep "." | head -1 | cut -d'[' -f2 | cut -d']' -f1)
+  export releaseVersion="${releaseVersion}"
+}
 
 
 

@@ -1,2 +1,2 @@
 lint_hadolint:
-	@export GIT_HOME=${GIT_HOME} && ${GIT_HOME}/scripts/lint.sh function_lint_hadolint
+	@.scripts/scripts/lint.sh script_lint_hadolint

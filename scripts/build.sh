@@ -19,9 +19,6 @@ script_build_image () {
     dirHome=$(pwd)/.scripts/testing/"${line}"
   fi
 
-  echo "dirHome=${dirHome}"
-  ls -la .scripts/testing/"${line}"/Dockerfile
-
   # ejecutando proceso
   docker build -t "${dockerhubUser}"/"${service}"-"${env}":latest -f "${dirHome}"/Dockerfile .
 }

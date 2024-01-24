@@ -1,37 +1,28 @@
 #!/bin/bash
 
-# function_loading () {
-#   source "${GIT_HOME}"/scripts/env.sh
-# }
+source_loading () {
+  source .scripts/scripts/env.sh
+}
 
-# function_release_image () {
-#   # cargando scripts
-#   function_loading
+script_release_image () {
+  # cargando scripts
+  source_loading
 
-#   # cargando variables globales
-#   function_env_global
+  # cargando variables globales
+  script_env_global
 
-#   if [ -z "${DOCKERHUB_USER}" ]
-#   then
-#     echo "variable DOCKERHUB_USER no detectada"
-#     exit 1
-#   fi
+  # cargando variable releaseVersion
+  script_env_release
 
-#   if [ -z "${DOCKERHUB_PASS}" ]
-#   then
-#     echo "variable DOCKERHUB_PASS no detectada"
-#     exit 1
-#   fi
+  # ejecutando proceso
+  docker tag "${dockerhubUser}"/"${service}"-"${env}":latest "${dockerhubUser}"/"${service}"-"${env}":"${releaseVersion}"
 
-#   # ejecutando proceso
-#   docker tag "${DOCKERHUB_USER}"/"${SERVICE}":latest "${DOCKERHUB_USER}"/"${SERVICE}":"${GITHUB_RUN_ID}"
+  # login
+  echo "${dockerhubPass}" | docker login --username "${dockerhubUser}" --password-stdin
 
-#   # login
-#   echo "${DOCKERHUB_PASS}" | docker login --username "${DOCKERHUB_USER}" --password-stdin
-
-#   # publicando imagen
-#   docker push "${DOCKERHUB_USER}"/"${SERVICE}":latest
-#   docker push "${DOCKERHUB_USER}"/"${SERVICE}":"${GITHUB_RUN_ID}"
-# }
+  # publicando imagen
+  docker push "${dockerhubUser}"/"${service}"-"${env}":latest
+  docker push "${dockerhubUser}"/"${service}"-"${env}":"${releaseVersion}"
+}
 
 "$@"

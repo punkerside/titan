@@ -1,18 +1,20 @@
 #!/bin/bash
 
-# function_loading () {
-#   source "${GIT_HOME}"/scripts/env.sh
-# }
+source_loading () {
+  source "${GIT_HOME}"/scripts/env.sh
+}
 
-# function_lint_hadolint () {
-#   # cargando scripts
-#   function_loading
-
-#   # cargando variables globales
-#   function_env_global
-
-#   # ejecutando proceso
-#   docker run --rm -i hadolint/hadolint hadolint --ignore DL4006 "$@" - < Dockerfile
-# }
+script_lint_hadolint () {
+  # condicion necesaria para las pruebas
+  if [ "${testsActivated}" = false ]
+  then
+    dirHome=$(pwd)
+  else
+    dirHome=$(pwd)/.scripts/testing/"${line}"
+  fi
+  
+  # ejecutando proceso
+  docker run --rm -i hadolint/hadolint hadolint --ignore DL4006 "$@" - < "${dirHome}"/Dockerfile
+}
 
 "$@"

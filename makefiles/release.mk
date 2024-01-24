@@ -1,2 +1,2 @@
 release_image:
-	@export GIT_HOME=${GIT_HOME} && ${GIT_HOME}/scripts/release.sh function_release_image
+	@.scripts/scripts/release.sh script_release_image

@@ -3,7 +3,7 @@
 # loading function
 source .scripts/scripts/env.sh
 
-# executing function
+# executing script
 script_env_global
 
 # validating result

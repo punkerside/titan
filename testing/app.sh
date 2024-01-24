@@ -7,6 +7,7 @@ mkdir -p "${dirTemp}"/.scripts/
 # setting up workspace
 cp -R "${PWD}"/* "${dirTemp}"/.scripts/
 cp Makefile "${dirTemp}"/
+cp CHANGELOG.md "${dirTemp}"/
 cd "${dirTemp}"/
 
 # listing bash script files

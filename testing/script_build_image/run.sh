@@ -13,11 +13,11 @@ script_env_global
 # deleting image
 docker rmi "${dockerhubUser}"/"${service}"-"${env}":latest
 
-# executing function
-script_build_image
+# executing script
+make build_image
 
 # validating result
-if [ $(docker images | grep core-dev | wc -l) = 1 ]
+if [ $(docker images | grep core-dev | grep latest | wc -l) = 1 ]
 then
   touch .scripts/testing/${line}/result.txt
 fi
