@@ -1,39 +1,52 @@
 #!/bin/bash
 
 script_env_global () {
-  if [ -z "${GITHUB_RUN_ID}" ]
-  then
-    echo "variable GITHUB_RUN_ID no detectada"
-  fi
-
+  # variables globales
   if [ "${GITHUB_REPOSITORY}" != "" ]
   then
-    PROJECT=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f1)
-    SERVICE=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f2-50)
-    export PROJECT="${PROJECT}"
-    export SERVICE="${SERVICE}"
+    project=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f1)
+    repoType=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f2)
+    service=$(echo "${GITHUB_REPOSITORY}" | cut -d "/" -f2 | cut -d "-" -f3-50)
+    export project="${project}"
+    export repoType="${repoType}"
+    export service="${service}"
   else
-    PROJECT=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f1)
-    SERVICE=$(echo "${PWD}" | rev | cut -d "/" -f1 | rev | cut -d "-" -f2-50)
-    export PROJECT="${PROJECT}"
-    export SERVICE="${SERVICE}"
+    project="titan"
+    repoType="script"
+    service="core"
+    env="dev"
+    export project="${project}"
+    export repoType="${repoType}"
+    export service="${service}"
+    export env="${env}"
   fi
 
-  ENV="prod"
-  export ENV="${ENV}"
+  # variables dockerhub
+  dockerhubUser="punkerside"
 
-  AWS_DEFAULT_REGION="us-east-1"
-  export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+  # ENV="prod"
+  # export ENV="${ENV}"
 
-  TF_ORGANIZATION="punkerside"
-  export TF_ORGANIZATION=${TF_ORGANIZATION}
+  # AWS_DEFAULT_REGION="us-east-1"
+  # export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
 
-  DOCKERHUB_USER="punkerside"
-  export DOCKERHUB_USER=${DOCKERHUB_USER}
+  # TF_ORGANIZATION="punkerside"
+  # export TF_ORGANIZATION=${TF_ORGANIZATION}
 
-  SNYK_ORG="punkerside"
-  export SNYK_ORG=${SNYK_ORG}
+  # DOCKERHUB_USER="punkerside"
+  # export DOCKERHUB_USER=${DOCKERHUB_USER}
+
+  # SNYK_ORG="punkerside"
+  # export SNYK_ORG=${SNYK_ORG}
 }
+
+
+
+
+
+
+
+
 
 # function_env_docker () {
 #   DOCKER_UID=$(id -u)

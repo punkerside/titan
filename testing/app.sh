@@ -1,49 +1,63 @@
 #!/bin/bash
 
-# espacio temporal
+# creating temporary directory
 dirTemp=$(mktemp -d)
 mkdir -p "${dirTemp}"/.scripts/
+
+# setting up workspace
 cp -R "${PWD}"/* "${dirTemp}"/.scripts/
 cp Makefile "${dirTemp}"/
 cd "${dirTemp}"/
 
-# listando funciones
+# listing bash script files
 ls -l .scripts/scripts/ | grep -v total | awk -F ' ' '{print $9}' > scriptsList.txt
 
+# listing functions
 while read -r line
 do
   source ".scripts/scripts/${line}"
 done < scriptsList.txt
 
+# counting all functions
 scriptsCount=$(declare -F | grep "script_" | awk -F ' ' '{print $3}' | wc -l)
 
-# depurando
+# debugging excluded functions
 ((scriptsCount=scriptsCount-$(cat .scripts/testing/exclude.txt | wc -l)))
+
+# listing functions
 declare -F | grep "script_" | awk -F ' ' '{print $3}' > scriptsFunctionTmp.txt
+
+# debugging excluded functions
 grep -vf .scripts/testing/exclude.txt scriptsFunctionTmp.txt > scriptsFunction.txt
 
-# bucle
+# starting variable testingCount
 testingCount=0
+
+# starting loop tests for each function
 while read -r line
 do
-  echo -ne "\e[48m[INFO]\e[0m Testing Script: ${line} \e[0m\n"
+  # validating if automated testing exists
   if test -f ".scripts/testing/${line}/run.sh"
   then
+    # running automated test
     export line="${line}"
     .scripts/testing/${line}/run.sh
 
+    # validating result
     if test -f ".scripts/testing/${line}/result.txt"
     then
+      # modifying coverage percentage
       testingCount=$((testingCount + 1))
-      echo -ne "\e[42m[INFO]\e[0m Exitoso \e[0m\n"
+      # debug
+      echo -ne "\e[32m Successful test: ${line} \e[0m \e[0m\n"
     else
-      echo -ne "\e[41m[INFO]\e[0m Fallido \e[0m\n"
+      echo -ne "\e[31m Test failed: ${line} \e[0m \e[0m\n"
     fi
 
   else
-    echo -ne "\e[43m[INFO]\e[0m Omitido \e[0m\n"
+    echo -ne "\e[33m Test skipped: ${line} \e[0m \e[0m\n"
   fi
 done < scriptsFunction.txt
 
-# resultado
-echo -ne "\e[44m[INFO]\e[0m Cobertura $((${testingCount}*100/${scriptsCount}))% \e[0m\n"
+# printing result
+echo -ne "\e[34m Test Coverage: $((${testingCount}*100/${scriptsCount}))% \e[0m \e[0m\n"

@@ -4,16 +4,27 @@ source_loading () {
   source .scripts/scripts/env.sh
 }
 
-# script_build_image () {
-#   # cargando scripts
-#   script_loading
+script_build_image () {
+  # cargando scripts
+  source_loading
 
-#   # cargando variables globales
-#   script_env_global
+  # cargando variables globales
+  script_env_global
 
-#   # ejecutando proceso
-#   docker build -t "${DOCKERHUB_USER}"/"${SERVICE}":latest -f Dockerfile .
-# }
+  # condicion necesaria para las pruebas
+  if [ "${testsActivated}" = false ]
+  then
+    dirHome=$(pwd)
+  else
+    dirHome=$(pwd)/.scripts/testing/"${line}"
+  fi
+
+  echo "dirHome=${dirHome}"
+  ls -la .scripts/testing/"${line}"/Dockerfile
+
+  # ejecutando proceso
+  docker build -t "${dockerhubUser}"/"${service}"-"${env}":latest -f "${dirHome}"/Dockerfile .
+}
 
 
 
