@@ -1,6 +1,6 @@
 init:
-	@rm -rf .scripts/
-	@git clone git@github.com:punkerside/titan-core.git -b main .scripts
+	@rm -rf .titan/
+	@git clone git@github.com:punkerside/titan.git -b main .titan
 
 -include makefiles/*.mk
--include .scripts/makefiles/*.mk
+-include .titan/makefiles/*.mk

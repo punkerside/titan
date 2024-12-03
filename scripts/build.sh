@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source_loading () {
-  source .scripts/scripts/env.sh
+  source .titan/scripts/env.sh
 }
 
 script_build_image () {
@@ -16,40 +16,12 @@ script_build_image () {
   then
     dirHome=$(pwd)
   else
-    dirHome=$(pwd)/.scripts/testing/"${line}"
+    dirHome=$(pwd)/.titan/testing/"${line}"
   fi
 
   # ejecutando proceso
-  docker build -t "${dockerhubUser}"/"${service}"-"${env}":latest -f "${dirHome}"/Dockerfile .
+  docker build -t "${service}"-"${env}":latest -f "${dirHome}"/Dockerfile .
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # function_build_code () {
 #   # cargando scripts
